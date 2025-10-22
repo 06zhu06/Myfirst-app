@@ -1,3 +1,18 @@
+import os
+import subprocess
+import sys
+
+def install_from_requirements():
+    requirements_file = 'requirements.txt'
+    if os.path.exists(requirements_file):
+        try:
+            subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", requirements_file])
+            print("依赖安装完成")
+        except subprocess.CalledProcessError as e:
+            print(f"安装依赖失败: {e}")
+
+# 在导入其他包之前调用
+install_from_requirements()
 import streamlit as st
 import pandas as pd
 import pydeck as pdk
